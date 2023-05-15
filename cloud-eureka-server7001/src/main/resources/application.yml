@@ -1,0 +1,22 @@
+server:
+  port: 7001
+
+eureka:
+  instance:
+    hostname: eureka7001.com #eureka 服务端的实例名称，配置C:\Windows\System32\drivers\etc路径下的hosts文件
+  client:
+    #false表示不向注册中心注册自己。
+    register-with-eureka: false
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetch-registry: true
+    service-url:
+      #集群的话需要相互注册，非集群在本机对应的端口注册即可
+      #在那个服务器里面注册，设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+      defaultZone: http://eureka7002.com:7002/eureka/
+  server:
+    #是否开启自我保护机制（默认为true）,在服务掉线(可能因为网络延迟)是不会马上删除注册表中的该微服务
+    #false 服务掉线马上删除
+    enable-self-preservation: true
+    #服务掉线多长时间才会在注册表中删除（默认60秒）
+    eviction-interval-timer-in-ms: 3000

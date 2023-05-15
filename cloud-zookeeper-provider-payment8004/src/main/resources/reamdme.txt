@@ -1,0 +1,1 @@
+zookeeper的生产者，在linux中的zookeeper注册

@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.cloud.zookeeper.connect-string",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.zookeeper.connect-string."
+  }
+] }

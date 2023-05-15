@@ -1,0 +1,38 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-service #微服务的名字
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT&rewriteBatchedStatements=true
+    username: root
+    password: huo20001128chen
+
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    #表示是否将自己注册进EurekaServer默认为true。
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    #微服务必须打开，才能从注册中心获取其他的微服务
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+  instance:
+    instance-id: payment8001 #在eureka监控页面显示的名字，默认是ip地址+微服务名
+    prefer-ip-address: true #在eureka监控页面显示ip地址，防止有给ip起别名找不到对应地址
+
+    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒(默认是30秒)
+    #指示eureka客户端需要多久（以秒为单位）向eureka服务器发送一次心跳信号以指示它仍然活着（默认30秒）
+#    lease-renewal-interval-in-seconds: 1
+    #Eureka服务端在收到最后一次心跳后等待时间上限，单位为秒(默认是90秒)，超时将剔除服务
+    #指示eureka服务器自接收到最后一个检测信号以来等待的时间（以秒为单位），然后才删除此实例
+#    lease-expiration-duration-in-seconds: 2

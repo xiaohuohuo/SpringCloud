@@ -1,0 +1,2 @@
+zookeeper的消费，在linux中的zookeeper注册
+调用8004和8005的controller
